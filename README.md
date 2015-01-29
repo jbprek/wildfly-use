@@ -1,2 +1,2 @@
-# wildfly-use
-Custom Wildfly Examples
+# WildFly Examples
+1. timer-demo
