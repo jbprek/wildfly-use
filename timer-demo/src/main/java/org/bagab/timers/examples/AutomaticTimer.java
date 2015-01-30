@@ -17,9 +17,10 @@ public class AutomaticTimer {
     private static final SimpleDateFormat  fmt = new SimpleDateFormat("HH:mm:ss");
 
     /**
-     * Timeouts every minute at 0th second
+     *   Timeout examples
+     *   Every minute
      */
-    @Schedule(hour="*", minute="*", second = "0", persistent = true)
+    @Schedule(hour="*", minute="*/1")
     private void everyMinuteTimeout() {
         log.info("Timeout at" + fmt.format(new Date()));
     }

@@ -1,6 +1,6 @@
 #warapp Timer Demo
 ###  Description
-Demonstrates various EJB timer topics
+Various timer
 ##Status
 WIP
 ## Descripion

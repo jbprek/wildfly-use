@@ -17,8 +17,9 @@ public class Deployments {
         return ShrinkWrap.create(WebArchive.class, "normal.war")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addPackage(Deployments.class.getPackage())
-                .addPackage(GreeterEJB.class.getPackage())
-                .addPackage(Greeter.class.getPackage());
+//                .addPackage(GreeterEJB.class.getPackage())
+//                .addPackage(Greeter.class.getPackage())
+                ;
     }
 
 }
