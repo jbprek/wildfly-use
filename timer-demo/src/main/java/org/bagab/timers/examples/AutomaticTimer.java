@@ -1,4 +1,4 @@
-package org.bagab.wapp.control.timerexamples;
+package org.bagab.timers.examples;
 
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
@@ -19,7 +19,7 @@ public class AutomaticTimer {
     /**
      * Timeouts every minute at 0th second
      */
-    @Schedule(second = "0", persistent = true)
+    @Schedule(hour="*", minute="*", second = "0", persistent = true)
     private void everyMinuteTimeout() {
         log.info("Timeout at" + fmt.format(new Date()));
     }
