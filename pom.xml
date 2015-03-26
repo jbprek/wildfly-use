@@ -12,9 +12,8 @@
     <name>wildfly-use</name>
 
     <modules>
-        <!-- JBOSS Quick start -->
         <module>timer-demo</module>
-
+        <module>interceptor-demo</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->
