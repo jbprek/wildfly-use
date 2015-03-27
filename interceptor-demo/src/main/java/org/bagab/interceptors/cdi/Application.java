@@ -7,28 +7,28 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 /**
- * @author prekezes.
+ * Application lifecycle, Global scope
  */
 @Singleton
 @Startup
 @LocalBean
 public class Application {
 
-    boolean running = false;
+    private boolean started = false;
 
     @Lock(LockType.READ)
-    public boolean  isRunning() {
-        return running;
+    public boolean  isStarted() {
+        return started;
     }
 
 
     public void start() {
-        running  = true;
+        started  = true;
     }
 
 
     public void stop() {
-        running = false;
+        started = false;
     }
 
 }
