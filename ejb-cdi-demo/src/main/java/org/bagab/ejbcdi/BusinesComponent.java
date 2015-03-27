@@ -1,4 +1,4 @@
-package org.bagab.interceptors.cdi;
+package org.bagab.ejbcdi;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

@@ -1,17 +1,14 @@
-package org.bagab.interceptors.cdi;
+package org.bagab.ejbcdi;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
-import org.junit.*;
 
 /**
  * @author prekezes.

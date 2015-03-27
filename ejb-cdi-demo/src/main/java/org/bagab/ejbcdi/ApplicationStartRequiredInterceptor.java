@@ -1,4 +1,4 @@
-package org.bagab.interceptors.cdi;
+package org.bagab.ejbcdi;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
