@@ -5,7 +5,9 @@
         http://xmlns.jcp.org/xml/ns/javaee
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="annotated">
-    <interceptors>
-         <class>ApplicationStartRequiredInterceptor</class>
-    </interceptors>
+    <alternatives>
+        <!--<class>org.bagab.ejbcdi.cdialternatives.ApplicationSingletonAlternative1</class>-->
+        <class>org.bagab.ejbcdi.cdialternatives.ApplicationSingletonAlternative2</class>
+
+    </alternatives>
 </beans>

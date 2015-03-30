@@ -11,14 +11,14 @@ import java.io.File;
 /**
  * @author prekezes.
  */
-@ArquillianSuiteDeployment
+//@ArquillianSuiteDeployment
 public class Deployments {
-    @Deployment(name = "test-suite", order = 2)
-    public static Archive<?> generateDefaultDeployment() {
-        return ShrinkWrap.create(WebArchive.class, "normal.war")
-                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
-                .addPackage(Deployments.class.getPackage())
-                ;
-    }
+//    @Deployment(name = "test-suite", order = 2)
+//    public static Archive<?> generateDefaultDeployment() {
+//        return ShrinkWrap.create(WebArchive.class, "normal.war")
+//                .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
+//                .addPackage(Deployments.class.getPackage())
+//                ;
+//    }
 
 }
