@@ -1,4 +1,4 @@
-package org.bagab.ejbcdi;
+package org.bagab.ejbcdi.interceptors;
 
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.ElementType;

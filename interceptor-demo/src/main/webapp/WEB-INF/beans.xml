@@ -6,6 +6,6 @@
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="annotated">
     <interceptors>
-         <class>ApplicationStartRequiredInterceptor</class>
+         <class>org.bagab.ejbcdi.interceptors.ApplicationStartRequiredInterceptor</class>
     </interceptors>
 </beans>

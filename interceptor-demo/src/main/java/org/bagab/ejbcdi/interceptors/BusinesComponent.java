@@ -1,4 +1,6 @@
-package org.bagab.ejbcdi;
+package org.bagab.ejbcdi.interceptors;
+
+import org.bagab.ejbcdi.interceptors.ApplicationStartRequired;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

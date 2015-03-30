@@ -1,4 +1,7 @@
-package org.bagab.ejbcdi;
+package org.bagab.ejbcdi.interceptors;
+
+import org.bagab.ejbcdi.interceptors.Application;
+import org.bagab.ejbcdi.interceptors.ApplicationStartRequired;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
