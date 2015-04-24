@@ -8,8 +8,6 @@ import javax.ejb.Timer;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 /**
@@ -21,12 +19,12 @@ public class ProgrammaticTimer {
     public static Logger log = Logger.getLogger(ProgrammaticTimer.class.getName());
 
     @Resource
-    private TimerService  timerService;
+    private TimerService timerService;
 
     /*
      * This is supposed to lookup the value from another component
      */
-    private int  getPeriodInSeconds() {
+    private int getPeriodInSeconds() {
         return 10;
     }
 
@@ -38,8 +36,8 @@ public class ProgrammaticTimer {
 
     public void schedulePeriodic(ScheduleExpression se, Serializable timerInfo) {
         TimerConfig tc = new TimerConfig(timerInfo,/*persistent = */ false);
-        Timer timer = timerService.createCalendarTimer(se,tc);
-        log.info("Flyer will be sent at: "+ timer.getNextTimeout());
+        Timer timer = timerService.createCalendarTimer(se, tc);
+        log.info("Flyer will be sent at: " + timer.getNextTimeout());
     }
 
 
@@ -56,7 +54,7 @@ public class ProgrammaticTimer {
      * Clear all timers for the specific bean
      */
     public void cancelTimers() {
-        for(Timer timer : timerService.getTimers())
+        for (Timer timer : timerService.getTimers())
             timer.cancel();
 
     }
