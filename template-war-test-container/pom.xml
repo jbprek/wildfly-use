@@ -139,22 +139,7 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- See instructions at https://github.com/ingwarsw/arquillian-suite-extension -->
-        <dependency>
-            <groupId>org.eu.ingwar.tools</groupId>
-            <artifactId>arquillian-suite-extension</artifactId>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 
     <build>
