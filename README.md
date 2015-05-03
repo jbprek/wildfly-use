@@ -17,6 +17,7 @@ Projects
 
 Status
 ------
+
 1. **template-ejb-module-interfaces** and **template-ejb-module** : OK
 2. **template-warapp** : OK
 2. **template-war-test-container** : OK,
