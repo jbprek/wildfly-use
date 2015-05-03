@@ -64,6 +64,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.bagab.wildfly</groupId>
+            <artifactId>template-ejb-module</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- Import the CDI API, we use provided scope as the API is included in
             JBoss WildFly -->
         <dependency>

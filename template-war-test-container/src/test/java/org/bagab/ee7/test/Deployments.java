@@ -5,6 +5,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
 import java.io.File;
 
@@ -13,10 +14,14 @@ import java.io.File;
  */
 @ArquillianSuiteDeployment
 public class Deployments {
+
+    static  File[] ejbCode = Maven.resolver().resolve("org.bagab.wildfly:template-ejb-module:1.0-SNAPSHOT").withTransitivity().asFile();
+
     @Deployment(name = "test-suite", order = 1)
     public static Archive<?> generateDefaultDeployment() {
         return ShrinkWrap.create(WebArchive.class, "war-test.war")
                 .addAsWebInfResource(new File("src/test/resources/beans.xml"))
+                .addAsLibraries(ejbCode)
                 .addPackage(Deployments.class.getPackage())
                 ;
     }

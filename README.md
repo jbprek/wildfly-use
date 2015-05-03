@@ -19,7 +19,7 @@ Status
 ------
 1. **template-ejb-module-interfaces** and **template-ejb-module** : OK
 2. **template-warapp** : OK
-2. **template-war-test-container** : OK, add test with external artifactsw
+2. **template-war-test-container** : OK,
 2. **template-warapp-depson-ejb-inline** : CHECK
 2. **template-ear-project**  :CHECK
 2. **template-ejb-remote-client** : IP, doesn't even compile
