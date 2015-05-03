@@ -12,9 +12,6 @@
     <name>wildfly-use</name>
 
     <modules>
-        <module>ejb-timer-demo</module>
-        <module>ejb-cdi-demo</module>
-        <module>cdi-interceptor</module>
 
         <!-- Template for a simple war-->
         <module>template-warapp</module>
@@ -24,10 +21,14 @@
         <module>template-ejb-module</module>
         <!-- war app depending on a non deployed ejb module -->
         <module>template-warapp-depson-ejb-inline</module>
-        <!-- ear demonstrating ejb local client with jboss extensions -->
-        <module>template-ejb-remote-client</module>
+        <!--
+        <module>template-ejb-remote-client</module>-->
         <!--  EAR template -->
         <module>template-ear-project</module>
+
+        <module>ejb-timer-demo</module>
+        <module>ejb-cdi-demo</module>
+        <module>cdi-interceptor</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->

@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
  * @author prekezes.
  */
 @RunWith(Arquillian.class)
-public class CounterlTest {
+public class CounterTest {
 
     // TODO Replace with separate lookups of
     @EJB
