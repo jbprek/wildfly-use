@@ -1,4 +1,4 @@
-package org.bagab.wapp.control;
+package org.bagab.warapp.control;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;

@@ -1,11 +1,11 @@
-package org.bagab.wapp.control;
+package org.bagab.warapp.control;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,14 +13,16 @@ import static org.junit.Assert.assertEquals;
  * @author prekezes.
  */
 @RunWith(Arquillian.class)
-public class GreeterEJBTest {
-    @EJB
-    private GreeterEJB greeterEJB;
+public class GreeterTest {
+    @Inject
+    Greeter greeter;
 
     @Test
     @OperateOnDeployment("test-suite")
-    public void testGreeter() throws Exception {
+    public void testGetMessage() throws Exception {
         String name = "World!";
-        assertEquals("Hello " + name, greeterEJB.sayHello(name));
+        greeter.setName(name);
+
+        assertEquals("Hello " + name, greeter.getMessage());
     }
 }

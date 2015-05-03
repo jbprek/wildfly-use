@@ -29,6 +29,7 @@
         <module>ejb-timer-demo</module>
         <module>ejb-cdi-demo</module>
         <module>cdi-interceptor</module>
+        <module>template-war-test-container</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->

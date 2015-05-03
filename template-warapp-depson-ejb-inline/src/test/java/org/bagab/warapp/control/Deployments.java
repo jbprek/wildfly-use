@@ -1,4 +1,4 @@
-package org.bagab.wapp.control;
+package org.bagab.warapp.control;
 
 import org.eu.ingwar.tools.arquillian.extension.suite.annotations.ArquillianSuiteDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;
