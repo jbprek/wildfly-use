@@ -11,7 +11,7 @@ Projects
 2. **template-ear-project**  : EAR template
 2. **template-ejb-remote-client** : CLI application invoking EJBs
 2. **timer-demo** : Demonstration of EJB timers
-2. **interceptor-demo** : Examples of EJB and CDI interceptors
+2. **cdi-interceptor** : Examples of EJB and CDI interceptors
 3. **ejb-cdi-demo** :  Examples of combinated use of EJBs with CDI
 
 Status
@@ -23,7 +23,7 @@ Status
 2. **template-ear-project**  :CHECK
 2. **template-ejb-remote-client** : IP, doesn't even compile
 2. **timer-demo** : CHECK
-2. **interceptor-demo** : CHECK
+2. **cdi-interceptor** : OK so far need to elaborate
 3. **ejb-cdi-demo** :  CHECK
 
 Future

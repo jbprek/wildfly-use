@@ -1,4 +1,4 @@
-package org.bagab.ejbcdi;
+package org.bagab.cdi_interceptor.appstarted;
 
 import org.eu.ingwar.tools.arquillian.extension.suite.annotations.ArquillianSuiteDeployment;
 import org.jboss.arquillian.container.test.api.Deployment;

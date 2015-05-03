@@ -6,8 +6,8 @@
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="annotated">
     <alternatives>
-        <!--<class>org.bagab.ejbcdi.cdialternatives.ApplicationSingletonAlternative1</class>-->
-        <class>org.bagab.ejbcdi.cdialternatives.ApplicationSingletonAlternative2</class>
+        <!--<class>ApplicationSingletonAlternative1</class>-->
+        <class>org.bagab.cdi_interceptor.appstarted.cdialternatives.ApplicationSingletonAlternative2</class>
 
     </alternatives>
 </beans>

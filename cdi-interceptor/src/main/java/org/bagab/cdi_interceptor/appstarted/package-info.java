@@ -2,4 +2,4 @@
  * Demonstates the use of CDI Interceptors
  *
  */
-package org.bagab.ejbcdi.interceptors;
+package org.bagab.cdi_interceptor.appstarted;

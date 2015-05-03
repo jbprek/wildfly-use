@@ -1,4 +1,4 @@
-package org.bagab.ejbcdi.interceptors;
+package org.bagab.cdi_interceptor.appstarted;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Lock;

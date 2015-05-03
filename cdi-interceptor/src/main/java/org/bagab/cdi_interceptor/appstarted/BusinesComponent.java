@@ -1,6 +1,4 @@
-package org.bagab.ejbcdi.interceptors;
-
-import org.bagab.ejbcdi.interceptors.ApplicationStartRequired;
+package org.bagab.cdi_interceptor.appstarted;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -13,7 +11,7 @@ import javax.ejb.Stateless;
 public class BusinesComponent {
 
     /**
-     * This method can run without Application.isStarted() == false;
+     * This method can run with Application.isStarted() == false;
      * @param v
      * @return
      */
@@ -22,7 +20,7 @@ public class BusinesComponent {
     }
 
     /**
-     * This method can run only when Application.isStarted() == false;
+     * This method can run only when Application.isStarted() == true;
      * @param v
      * @return
      */

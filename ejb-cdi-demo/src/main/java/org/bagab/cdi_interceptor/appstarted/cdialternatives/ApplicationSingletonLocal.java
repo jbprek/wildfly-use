@@ -1,4 +1,4 @@
-package org.bagab.ejbcdi.cdialternatives;
+package org.bagab.cdi_interceptor.appstarted.cdialternatives;
 
 import javax.ejb.Local;
 

@@ -1,7 +1,7 @@
-package org.bagab.ejbcdi;
+package org.bagab.cdi_interceptor.appstarted;
 
-import org.bagab.ejbcdi.interceptors.Application;
-import org.bagab.ejbcdi.interceptors.BusinesComponent;
+import org.bagab.cdi_interceptor.appstarted.Application;
+import org.bagab.cdi_interceptor.appstarted.BusinesComponent;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
