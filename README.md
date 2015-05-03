@@ -24,7 +24,7 @@ Status
 2. **template-ear-project**  :CHECK
 2. **template-ejb-remote-client** : IP, doesn't even compile
 2. **ejb-timer-demo** : CHECK
-2. **cdi-interceptor** : OK so far need to elaborate
+2. **cdi-interceptor** : OK so far, need to elaborate
 3. **ejb-cdi-demo** :  CHECK
 
 Future
