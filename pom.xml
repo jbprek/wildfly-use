@@ -28,6 +28,7 @@
         <module>template-ejb-remote-client</module>
         <!--  EAR template -->
         <module>template-ear-project</module>
+        <module>ejb-cdi-multi-module</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->

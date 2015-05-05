@@ -1,3 +1,8 @@
+TODO
+====
+    - Conclude section on timers
+
+
 Things to consider
 ==================
 
