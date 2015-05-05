@@ -25,7 +25,7 @@ public class Deployments {
 //                .addPackage(Deployments.class.getPackage())
 //                .addPackage(SimpleStatelessBean.class.getPackage());
                 .addAsLibraries(interfaceCode)
-                .addClass(CounterlTest.class)
+                .addClass(CounterTest.class)
                 .addClass(CounterlBean.class);
 
     }

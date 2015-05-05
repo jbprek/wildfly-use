@@ -21,13 +21,6 @@
     <name>template-ear-ear-app</name>
     <description>WildFly EAR Template - EAR  App</description>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <distribution>repo</distribution>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-        </license>
-    </licenses>
 
     <dependencies>
         <!-- Dependencies on the ejb and web modules so that they can be found by the ear plugin -->

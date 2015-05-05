@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <artifactId>template-war-test-container</artifactId>
+        <groupId>org.bagab.wildfly</groupId>
+        <version>1.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.bagab.wildfly</groupId>
-    <artifactId>template-warapp</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-
-    <name>template-warapp</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,6 +64,11 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.bagab.wildfly</groupId>
+            <artifactId>template-ejb-module</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- Import the CDI API, we use provided scope as the API is included in
             JBoss WildFly -->
         <dependency>
@@ -134,22 +139,7 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.protocol</groupId>
-            <artifactId>arquillian-protocol-servlet</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- See instructions at https://github.com/ingwarsw/arquillian-suite-extension -->
-        <dependency>
-            <groupId>org.eu.ingwar.tools</groupId>
-            <artifactId>arquillian-suite-extension</artifactId>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -239,3 +229,4 @@
         </profile>
     </profiles>
 </project>
+
