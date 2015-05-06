@@ -5,9 +5,5 @@
         http://xmlns.jcp.org/xml/ns/javaee
         http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
        bean-discovery-mode="annotated">
-    <alternatives>
-        <!--<class>ApplicationSingletonAlternative1</class>-->
-        <class>org.bagab.ejbcdi.cdi.alternatives.ApplicationSingletonAlternative2</class>
 
-    </alternatives>
 </beans>

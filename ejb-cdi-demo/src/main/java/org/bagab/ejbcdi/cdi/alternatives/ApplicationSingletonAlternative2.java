@@ -1,4 +1,4 @@
-package org.bagab.cdi_interceptor.appstarted.cdialternatives;
+package org.bagab.ejbcdi.cdi.alternatives;
 
 import javax.ejb.Singleton;
 import javax.enterprise.inject.Alternative;
@@ -12,5 +12,10 @@ public class ApplicationSingletonAlternative2 implements ApplicationSingletonLoc
     @Override
     public String hello() {
         return "###Hello from second alternative###";
+    }
+
+    @Override
+    public String version() {
+        return "Alt-2";
     }
 }

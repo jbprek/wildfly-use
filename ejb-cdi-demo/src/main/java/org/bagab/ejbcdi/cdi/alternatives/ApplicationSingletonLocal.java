@@ -1,4 +1,4 @@
-package org.bagab.cdi_interceptor.appstarted.cdialternatives;
+package org.bagab.ejbcdi.cdi.alternatives;
 
 import javax.ejb.Local;
 
@@ -9,4 +9,6 @@ import javax.ejb.Local;
 public interface ApplicationSingletonLocal {
 
     String hello();
+
+    String version();
 }

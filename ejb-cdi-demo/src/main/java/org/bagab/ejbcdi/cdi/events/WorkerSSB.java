@@ -19,14 +19,15 @@ public class WorkerSSB {
     @WorkDoneEvent
     private Event<String> notifier;
 
-    public void onAppStart(@Observes @ApplicationStartedEvent Void v) {
+    public void onAppStart(@Observes @ApplicationStartedEvent Boolean v) {
         log.info("ApplicationStartedEvent reveived!");
     }
 
     public void proceedToWork(@Observes @WorkToDoEvent String work) {
+        log.info("WorkToDoEvent received - , request:" + work);
         Objects.nonNull(work);
-        log.info("About to fire WorkToDoEvent!");
+        log.info("WorkDoneEvent sending !");
         notifier.fire(work.toUpperCase());
-        log.info("Fired WorkToDoEvent!");
+        log.info("WorkDoneEvent sent!");
     }
 }

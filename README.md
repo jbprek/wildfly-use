@@ -13,7 +13,7 @@ Projects
 2. **template-ejb-remote-client** : CLI application invoking EJBs
 2. **ejb-timer-demo** : Demonstration of EJB timers
 2. **cdi-interceptor** : Examples of EJB and CDI interceptors
-3. **ejb-cdi-demo** :  Examples of combinated use of EJBs with CDI
+3. **ejb-cdi-demo** :  Examples of combinated use of EJBs with CDI, covers *alternatives*, *events*
 
 Status
 ------

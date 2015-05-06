@@ -18,7 +18,7 @@ public class AppControlSingleton {
 
     @Inject
     @ApplicationStartedEvent
-    private Event<Void> startupNotifier;
+    private Event<Boolean> startupNotifier;
 
     @Inject
     @WorkToDoEvent
@@ -29,26 +29,27 @@ public class AppControlSingleton {
      */
     @PostConstruct
     private void setup() {
-        log.info("About to fire ApplicationStartedEvent!");
-        startupNotifier.fire(null);
-        log.info("Fired ApplicationStartedEvent!");
+        log.info("ApplicationStartedEvent sending!");
+        startupNotifier.fire(Boolean.TRUE);
+        log.info("ApplicationStartedEvent sent!");
 
     }
 
     /**
      * Order a (any) worker to proceed, firing the event WorkToDoEvent
      */
-    void doWork(String request) {
-        log.info("External call with request :" + request + " About to fire OrderToProceedEvent");
+    public void doWork(String request) {
+        log.info("doWork called, request :" + request );
+        log.info("OrderToProceedEvent sending!");
         proceedNotifier.fire(request);
-        log.info("Fired OrderToProceedEvent!");
+        log.info("OrderToProceedEvent sent!");
     }
 
     /**
      * Notification from worker that tx is complete
      * @param reply
      */
-    void workComplete(@Observes @WorkDoneEvent String reply) {
+    public void workComplete(@Observes @WorkDoneEvent String reply) {
         log.info("Received reply :" + reply);
     }
 
