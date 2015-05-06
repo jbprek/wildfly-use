@@ -27,9 +27,13 @@
         <module>template-ejb-remote-client</module>-->
         <!--  EAR template -->
         <module>template-ear-project</module>
-
+        <!-- Example use of EJB timers -->
         <module>ejb-timer-demo</module>
+        <!-- Demonstrates CDI features and their use in tandem with EJBs -->
         <module>ejb-cdi-demo</module>
+        <!-- Experimentation with CDI features across different EJBs and WARS -->
+        <module>ejb-cdi-multi-module</module>
+
         <module>cdi-interceptor</module>
         <module>template-war-test-container</module>
     </modules>

@@ -7,26 +7,12 @@
     <groupId>org.bagab.wildfly</groupId>
     <artifactId>ejb-cdi-multi-module</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <modules>
-
-        <!-- Template for a simple war-->
-        <!--<module>template-warapp</module>-->
-        <!--&lt;!&ndash; Classes and interfaces for template-ejb-module- &ndash;&gt;-->
-        <!--<module>template-ejb-module-interfaces</module>-->
-        <!--&lt;!&ndash; Template for a standalone ejb module &ndash;&gt;-->
-        <!--<module>template-ejb-module</module>-->
-        <!--&lt;!&ndash; war app depending on a non deployed ejb module &ndash;&gt;-->
-        <!--<module>template-warapp-depson-ejb-inline</module>-->
-        <!--&lt;!&ndash;-->
-        <!--<module>template-ejb-remote-client</module>&ndash;&gt;-->
-        <!--&lt;!&ndash;  EAR template &ndash;&gt;-->
-        <!--<module>template-ear-project</module>-->
-
-        <!--<module>ejb-timer-demo</module>-->
-        <!--<module>ejb-cdi-demo</module>-->
-        <!--<module>cdi-interceptor</module>-->
-        <!--<module>template-war-test-container</module>-->
+        <module>ejb-module-a</module>
+        <module>ejb-module-b</module>
+        <module>warapp</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->
@@ -132,4 +118,3 @@
     </profiles>
 </project>
 
-</project>
