@@ -1,4 +1,4 @@
-package org.bagab.cdi.events;
+package org.bagab.cdi.events.modb;
 
 import org.bagab.cdi.events.moda.AppControlSingleton;
 import org.bagab.cdi.events.moda.ApplicationChangedStatusEvent;
@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 
 import javax.ejb.EJB;
 import javax.enterprise.event.Observes;
-import java.util.concurrent.SynchronousQueue;
 import java.util.logging.Logger;
 
 /**
@@ -20,31 +19,37 @@ import java.util.logging.Logger;
 public class TestEvent {
     public static final Logger log = Logger.getLogger(TestEvent.class.getName());
 
-
-    public static boolean appStarted = false;
-    public static boolean appStopped = false;
+    private boolean appStarted = false;
+    private boolean appStopped = false;
 
     @EJB
-    private AppControlSingleton bean;
+    private AppControlSingleton modAObservable;
+
+    @EJB
+    private ModAObserver observerInModB;
 
     // TODO Asynchronous checking of the events
     @Test
-    @OperateOnDeployment("test-ejb-module-a")
+    @OperateOnDeployment("test-ejb-module-b")
     public void test() {
-        bean.start();
+        modAObservable.start();
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        bean.stop();
+        Assert.assertEquals(AppControlSingleton.Status.STARTED, modAObservable.getStatus());
+        Assert.assertEquals(AppControlSingleton.Status.STARTED, observerInModB.getStatus());
+
+
+        modAObservable.stop();
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        Assert.assertEquals(true, TestEvent.appStarted);
-        Assert.assertEquals(true, TestEvent.appStopped);
+        Assert.assertEquals(AppControlSingleton.Status.STOPPED, modAObservable.getStatus());
+        Assert.assertEquals(AppControlSingleton.Status.STOPPED, observerInModB.getStatus());
 
     }
 
