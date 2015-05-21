@@ -32,7 +32,7 @@
 
     <artifactId>template-ear-ejb-module</artifactId>
 
-    <name>template-ear-ejb-module</name>
+    <name>${project.artifactId}</name>
     <description>WildFly EAR Template Project - EJB Module</description>
 
     <dependencies>

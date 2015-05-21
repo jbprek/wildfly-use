@@ -8,7 +8,7 @@
    <artifactId>template-ejb-remote-client</artifactId>
    <version>8.0.0-SNAPSHOT</version>
    <packaging>jar</packaging>
-   <name>template-ejb-remote-client</name>
+    <name>$project.artifact}</name>
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

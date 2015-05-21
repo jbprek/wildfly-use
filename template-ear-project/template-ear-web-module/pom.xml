@@ -13,7 +13,7 @@
     <artifactId>template-ear-web-module</artifactId>
     <packaging>war</packaging>
 
-    <name>template-ear-web-module</name>
+    <name>${project.artifactId}</name>
     <description>WildFly EAR Template - Web Module</description>
 
     <dependencies>

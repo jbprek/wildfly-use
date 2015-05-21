@@ -36,6 +36,7 @@
 
         <module>cdi-interceptor</module>
         <module>template-war-test-container</module>
+        <module>wildfly-logging</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->

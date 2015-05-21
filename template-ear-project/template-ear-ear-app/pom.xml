@@ -18,7 +18,7 @@
     <artifactId>template-ear-ear-app</artifactId>
     <packaging>ear</packaging>
 
-    <name>template-ear-ear-app</name>
+    <name>${project.artifactId}</name>
     <description>WildFly EAR Template - EAR  App</description>
 
 

@@ -8,7 +8,7 @@
     <artifactId>template-ear-project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>template-ear-project</name>
+    <name>${project.artifactId}</name>
     <description>WildFly EAR Template Project</description>
 
     <packaging>pom</packaging>
