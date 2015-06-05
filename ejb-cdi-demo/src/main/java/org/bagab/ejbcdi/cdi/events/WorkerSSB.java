@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author prekezes.
  */
 @Stateless
-public class WorkerSSB {
+public class WorkerSSB implements WorkerSSBLocal {
 
     private static Logger log = Logger.getLogger(WorkerSSB.class.getName());
 

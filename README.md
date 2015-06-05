@@ -15,6 +15,8 @@ Projects
 2. **cdi-interceptor** : Examples of EJB and CDI interceptors
 3. **ejb-cdi-demo** :  Examples of combined use of EJBs with CDI, covers *alternatives*, *events*
 3. **ejb-cdi-multiple-module** :  Examples of combined use of EJBs with CDI, covers *alternatives*, *events* splitted across modules
+3. **jms-topics** :  MDB Examples
+
 
 Status
 ------
@@ -30,6 +32,8 @@ Status
 2. **cdi-interceptor** : OK so far, need to elaborate
 3. **ejb-cdi-demo** :  CHECK
 3. **ejb-cdi-multiple-module** : IP
+3. **jms-topics** :  IP
+
 
 Future
 ------
