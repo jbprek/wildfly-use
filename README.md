@@ -37,6 +37,7 @@ Status
 
 Future
 ------
+1. EJB client example as basis of load test
 1. JMS Mdb examples
 2. CDI Examples
 

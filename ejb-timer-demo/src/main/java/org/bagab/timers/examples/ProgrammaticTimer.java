@@ -30,7 +30,7 @@ public class ProgrammaticTimer {
 
     @PostConstruct
     private void setup() {
-//        dateFormatThreadLocal.set(new SimpleDateFormat("HH:mm:ss"));
+        log.info("PostConstruct invocation");
     }
 
 
