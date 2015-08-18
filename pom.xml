@@ -41,6 +41,7 @@
         <module>wildfly-ejb-general-warapp</module>
         <module>jms-topics</module>
         <module>rest-ejb-topics</module>
+        <module>iot-gateway-project</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->

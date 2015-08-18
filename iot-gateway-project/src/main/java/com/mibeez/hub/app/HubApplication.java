@@ -21,9 +21,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 /**
- * A class extending {@link Application} is the portable way to define JAX-RS 2.0 resources, and the {@link ApplicationPath} defines the root path shared by all these resources.
- *
- * @author Eduardo Martins
+ * JAX-RS initialization
  */
 @ApplicationPath("/")
 public class HubApplication extends Application {

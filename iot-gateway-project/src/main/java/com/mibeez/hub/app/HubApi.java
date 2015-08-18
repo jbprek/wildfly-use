@@ -19,17 +19,29 @@ package com.mibeez.hub.app;
 import com.mibeez.hub.gson.JsonHandler;
 import com.mibeez.hub.model.HubInfo;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import java.util.logging.Logger;
 
-
+@Path("/")
 @Stateless
 public class HubApi {
-    @Inject
+
+    private static Logger log = Logger.getLogger(HubApi.class.getName());
+
     private JsonHandler jsonHandler;
+
+    @EJB
+    private HubInfoService hubInfoService;
+
+    @PostConstruct
+    private void setup() {
+        jsonHandler = new JsonHandler();
+    }
 
     /**
      * Retrieves a JSON hello world message.
@@ -41,9 +53,19 @@ public class HubApi {
     @Path("/")
     @Produces({"application/json"})
     public String getHelloWorldJSON() {
-        HubInfo h = HubInfo.getInstance();
+        HubInfo h = hubInfoService.getInstance();
         return jsonHandler.toJson(h);
     }
+
+
+
+    @GET
+    @Path("/ping")
+    @Produces({"text/plain"})
+    public String pong() {
+        return "pong";
+    }
+
 //
 //    /**
 //     * Retrieves a XML hello world message.
