@@ -22,9 +22,7 @@ import com.mibeez.hub.model.HubInfo;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.logging.Logger;
 
 @Path("/")
@@ -52,12 +50,19 @@ public class HubApi {
     @GET
     @Path("/")
     @Produces({"application/json"})
-    public String getHelloWorldJSON() {
+    public String getHubInfo() {
         HubInfo h = hubInfoService.getInstance();
         return jsonHandler.toJson(h);
     }
 
 
+    @POST
+    @Path("/")
+    @Consumes({"application/json"})
+    public String commission() {
+        HubInfo h = hubInfoService.getInstance();
+        return jsonHandler.toJson(h);
+    }
 
     @GET
     @Path("/ping")
