@@ -16,20 +16,26 @@
  */
 package com.mibeez.hub.app;
 
+import com.google.gson.reflect.TypeToken;
 import com.mibeez.hub.gson.JsonHandler;
 import com.mibeez.hub.model.HubInfo;
+import com.mibeez.hub.model.HubStatus;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import java.lang.reflect.Type;
+import java.net.URI;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @Path("/")
 @Stateless
-public class HubApi {
+public class HubApiResource {
 
-    private static Logger log = Logger.getLogger(HubApi.class.getName());
+    private static Logger log = Logger.getLogger(HubApiResource.class.getName());
 
     private JsonHandler jsonHandler;
 
@@ -55,14 +61,59 @@ public class HubApi {
         return jsonHandler.toJson(h);
     }
 
-
+    /**
+     * We expect a JSON object of the form { 'name' : 'nameValue'}
+     * @param jsonInfo
+     * @return
+     */
     @POST
     @Path("/")
     @Consumes({"application/json"})
-    public String commission() {
+    public Response commission(String jsonInfo) {
+        Type type = new TypeToken<Map<String, String>>(){}.getType();
+        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
+
         HubInfo h = hubInfoService.getInstance();
-        return jsonHandler.toJson(h);
+        // TODO Error if name allready exists
+        // TODO Error if name not found in jsonInfo
+        h.setName(myMap.get("name"));
+        h.setStatus(HubStatus.ON);
+        hubInfoService.updateInstance(h);
+        return Response.created(URI.create("/")).build();
     }
+
+       /*
+       	HUB	CS	PUT	/	BeehiveHub temporary de-commission	{'commission=true|false}
+	    HUB	CS	DELETE	/	BeehiveHub permanent de-commission	None
+        HUB	CS	DELETE	/sensors/{:lan_address}	Hive Decommission	None
+        HUB	CS	GET	/sensors[/{:lan_address}]	Cached sensor values	returns SensorInfo[]
+        HUB	CS	PUT	/sensors[/{:lan_address}]	Last sensor values,  forces re-read of sensor values	returns SensorInfo[]
+        HUB	CS	GET	/alarms	Current alarm conditions	returns SensorInfo[]
+        HUB	CS	GET	/warnings	Current Notifications	returns SensorInfo[]
+
+        */
+    /**
+     *
+     * @param jsonInfo
+     * @return
+     */
+    @PUT
+    @Path("/")
+    @Consumes({"application/json"})
+    public Response updateStatus(String jsonInfo) {
+        Type type = new TypeToken<Map<String, String>>(){}.getType();
+        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
+
+        HubInfo h = hubInfoService.getInstance();
+        // TODO Error if name allready exists
+        // TODO Error if name not found in jsonInfo
+        String val = myMap.get("standby").trim();
+        boolean standby = Boolean.parseBoolean(val);
+        h.setStatus(standby ? HubStatus.SB : HubStatus.ON);
+        hubInfoService.updateInstance(h);
+        return Response.ok(URI.create("/")).build();
+    }
+
 
     @GET
     @Path("/ping")

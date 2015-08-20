@@ -3,6 +3,7 @@ package com.mibeez.hub.model;
 import redis.clients.jedis.Jedis;
 
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class HubInfo {
     private String name = "";
     private String wanAddress = "192.168.0.1";
     private HubStatus status = HubStatus.OFF;
+    private Date statusUpdate = new Date();
 
     public static HubInfo valueOf(Map<String, String> map) {
         HubInfo h = new HubInfo();
