@@ -1,4 +1,4 @@
-package com.mibeez.hub.gson;
+package com.mibeez.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

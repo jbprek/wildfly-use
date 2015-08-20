@@ -17,8 +17,8 @@
 package com.mibeez.hub.app;
 
 import com.google.gson.reflect.TypeToken;
-import com.mibeez.hub.gson.JsonHandler;
-import com.mibeez.hub.model.HubInfo;
+import com.mibeez.gson.JsonHandler;
+import com.mibeez.hub.to.HubInfo;
 import com.mibeez.hub.model.HubStatus;
 
 import javax.annotation.PostConstruct;
@@ -33,14 +33,14 @@ import java.util.logging.Logger;
 
 @Path("/")
 @Stateless
-public class HubApiResource {
+public class HubServiceRest {
 
-    private static Logger log = Logger.getLogger(HubApiResource.class.getName());
+    private static Logger log = Logger.getLogger(HubServiceRest.class.getName());
 
     private JsonHandler jsonHandler;
 
     @EJB
-    private HubInfoService hubInfoService;
+    private HubService hubInfoService;
 
     @PostConstruct
     private void setup() {
@@ -57,7 +57,7 @@ public class HubApiResource {
     @Path("/")
     @Produces({"application/json"})
     public String getHubInfo() {
-        HubInfo h = hubInfoService.getInstance();
+        HubInfo h = hubInfoService.getInstanceTO();
         return jsonHandler.toJson(h);
     }
 
@@ -73,7 +73,7 @@ public class HubApiResource {
         Type type = new TypeToken<Map<String, String>>(){}.getType();
         Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
 
-        HubInfo h = hubInfoService.getInstance();
+        HubInfo h = hubInfoService.getInstanceTO();
         // TODO Error if name allready exists
         // TODO Error if name not found in jsonInfo
         h.setName(myMap.get("name"));
@@ -89,7 +89,6 @@ public class HubApiResource {
         HUB	CS	GET	/sensors[/{:lan_address}]	Cached sensor values	returns SensorInfo[]
         HUB	CS	PUT	/sensors[/{:lan_address}]	Last sensor values,  forces re-read of sensor values	returns SensorInfo[]
         HUB	CS	GET	/alarms	Current alarm conditions	returns SensorInfo[]
-        HUB	CS	GET	/warnings	Current Notifications	returns SensorInfo[]
 
         */
     /**
@@ -104,7 +103,7 @@ public class HubApiResource {
         Type type = new TypeToken<Map<String, String>>(){}.getType();
         Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
 
-        HubInfo h = hubInfoService.getInstance();
+        HubInfo h = hubInfoService.getInstanceTO();
         // TODO Error if name allready exists
         // TODO Error if name not found in jsonInfo
         String val = myMap.get("standby").trim();

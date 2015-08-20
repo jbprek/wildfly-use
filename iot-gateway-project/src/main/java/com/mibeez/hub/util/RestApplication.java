@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.mibeez.hub.app;
+package com.mibeez.hub.util;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -24,5 +24,5 @@ import javax.ws.rs.core.Application;
  * JAX-RS initialization
  */
 @ApplicationPath("/")
-public class HubApplication extends Application {
+public class RestApplication extends Application {
 }

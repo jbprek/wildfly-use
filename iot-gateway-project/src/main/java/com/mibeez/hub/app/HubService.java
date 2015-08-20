@@ -1,6 +1,6 @@
 package com.mibeez.hub.app;
 
-import com.mibeez.hub.model.HubInfo;
+import com.mibeez.hub.to.HubInfo;
 import redis.clients.jedis.Jedis;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by john on 8/18/15.
  */
 @Singleton
-public class HubInfoService {
+public class HubService {
 
     private static final String HUB_INFO_KEY = "hub_info";
     private HubInfo hubInfo = null;
@@ -27,8 +27,9 @@ public class HubInfoService {
         }
     }
 
+
     @Lock(LockType.READ)
-    public HubInfo getInstance() {
+    public HubInfo getInstanceTO() {
         Map<String, String> store = jedis.hgetAll(HUB_INFO_KEY);
         return HubInfo.valueOf(store);
     }

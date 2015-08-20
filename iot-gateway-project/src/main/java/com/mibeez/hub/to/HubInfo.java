@@ -1,8 +1,7 @@
-package com.mibeez.hub.model;
+package com.mibeez.hub.to;
 
-import redis.clients.jedis.Jedis;
+import com.mibeez.hub.model.HubStatus;
 
-import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
