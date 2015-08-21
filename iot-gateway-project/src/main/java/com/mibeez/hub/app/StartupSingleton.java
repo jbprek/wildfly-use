@@ -7,7 +7,7 @@ import javax.ejb.Startup;
 import java.util.logging.Logger;
 
 /**
- * @author prekezes.
+ * Global state
  */
 @Startup
 @Singleton

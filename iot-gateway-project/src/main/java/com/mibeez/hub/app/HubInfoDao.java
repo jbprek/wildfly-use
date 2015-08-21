@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by john on 8/18/15.
  */
 @Singleton
-public class HubService {
+public class HubInfoDao {
 
     private static final String HUB_INFO_KEY = "hub_info";
     private HubInfo hubInfo = null;
