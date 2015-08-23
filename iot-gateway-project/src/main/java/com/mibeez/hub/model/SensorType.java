@@ -1,11 +1,12 @@
 package com.mibeez.hub.model;
 
 /**
- * @author prekezes.
+ * Sensor types
  */
 public enum SensorType {
-    TEMP1,
-    TEMP2,
-    GPS,
-    TILT
+    TEMP1, /* First temperature sensor */
+    TEMP2, /* First temperature sensor */
+    GPS,   /* GPS measurement */
+    TILT,  /* TILT Indication */
+    TAMPER /* Tamper indication */
 }

@@ -18,8 +18,6 @@ package com.mibeez.hub.app;
 
 import com.google.gson.reflect.TypeToken;
 import com.mibeez.gson.JsonHandler;
-import com.mibeez.hub.to.HubInfo;
-import com.mibeez.hub.model.HubStatus;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -46,12 +44,12 @@ import java.util.logging.Logger;
 @Stateless
 public class HubServiceRest {
 
-    private static Logger log = Logger.getLogger(HubServiceRest.class.getName());
+    private static Logger log = Logger.getGlobal();
 
     private JsonHandler jsonHandler;
 
     @EJB
-    private HubInfoDao hubInfoService;
+    private IotGatewayService service;
 
     @PostConstruct
     private void setup() {
@@ -68,8 +66,16 @@ public class HubServiceRest {
     @Path("/")
     @Produces({"application/json"})
     public String getHubInfo() {
-        HubInfo h = hubInfoService.getInstanceTO();
-        return jsonHandler.toJson(h);
+//
+//        try {
+//            HubInfo h = service.getHub().toHubInfo();
+//            return jsonHandler.toJson(h);
+//        } catch (IotGatewayException e) {
+//            log.severe(e.getMessage());
+//            e.printStackTrace();
+//            return null;
+//        }
+        return null;
     }
 
     /**
@@ -81,15 +87,18 @@ public class HubServiceRest {
     @Path("/")
     @Consumes({"application/json"})
     public Response commission(String jsonInfo) {
+        // Retrieve port Information
+        // TODO invalid format
         Type type = new TypeToken<Map<String, String>>(){}.getType();
         Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
 
-        HubInfo h = hubInfoService.getInstanceTO();
-        // TODO Error if name allready exists
-        // TODO Error if name not found in jsonInfo
-        h.setName(myMap.get("name"));
-        h.setStatus(HubStatus.ON);
-        hubInfoService.updateInstance(h);
+        try {
+            service.commitHub(myMap.get("name"));
+        } catch (IotGatewayException e) {
+            // TODO handle error
+            e.printStackTrace();
+        }
+
         return Response.created(URI.create("/")).build();
     }
 
@@ -111,16 +120,16 @@ public class HubServiceRest {
     @Path("/")
     @Consumes({"application/json"})
     public Response toggleStandby(String jsonInfo) {
-        Type type = new TypeToken<Map<String, String>>(){}.getType();
-        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
-
-        HubInfo h = hubInfoService.getInstanceTO();
-        // TODO Error if name allready exists
-        // TODO Error if name not found in jsonInfo
-        String val = myMap.get("standby").trim();
-        boolean standby = Boolean.parseBoolean(val);
-        h.setStatus(standby ? HubStatus.SB : HubStatus.ON);
-        hubInfoService.updateInstance(h);
+//        Type type = new TypeToken<Map<String, String>>(){}.getType();
+//        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
+//
+//        HubInfo h = hubInfoService.getInstanceTO();
+//        // TODO Error if name allready exists
+//        // TODO Error if name not found in jsonInfo
+//        String val = myMap.get("standby").trim();
+//        boolean standby = Boolean.parseBoolean(val);
+//        h.setStatus(standby ? HubStatus.SB : HubStatus.ON);
+//        hubInfoService.updateInstance(h);
         return Response.ok(URI.create("/")).build();
     }
 
@@ -162,9 +171,8 @@ public class HubServiceRest {
     @Produces({"application/json"})
     public String allHiveSensorValues() {
         log.info("GET /sensors/ ALL ");
-        HubInfo h = hubInfoService.getInstanceTO();
         // TODO real data
-        return jsonHandler.toJson(h);
+        return null;
     }
 
     @GET
@@ -172,9 +180,8 @@ public class HubServiceRest {
     @Produces({"application/json"})
     public String hiveSensorValues(@PathParam("lan_address")String lanAddress) {
         log.info("GET /sensors/ + "+lanAddress);
-        HubInfo h = hubInfoService.getInstanceTO();
         // TODO real data
-        return jsonHandler.toJson(h);
+        return null;
     }
 
     @PUT
@@ -182,7 +189,6 @@ public class HubServiceRest {
     @Produces({"application/json"})
     public Response refreshAllHiveSensorValues() {
         log.info("GET /sensors/ ALL ");
-        HubInfo h = hubInfoService.getInstanceTO();
         // TODO real data
         return Response.ok(URI.create("/")).build();
     }
@@ -192,9 +198,8 @@ public class HubServiceRest {
     @Produces({"application/json"})
     public String hiveDecommission(@PathParam("lan_address")String lanAddress) {
         log.info("GET /sensors/ + "+lanAddress);
-        HubInfo h = hubInfoService.getInstanceTO();
         // TODO real data
-        return jsonHandler.toJson(h);
+        return null;
     }
 
     @PUT
@@ -202,19 +207,17 @@ public class HubServiceRest {
     @Produces({"application/json"})
     public String refreshHiveSensorValues(@PathParam("lan_address")String lanAddress) {
         log.info("GET /sensors/ + "+lanAddress);
-        HubInfo h = hubInfoService.getInstanceTO();
         // TODO real data
-        return jsonHandler.toJson(h);
+        return null;
     }
 
     @GET
     @Path("/alerts")
     @Produces({"application/json"})
-    public String getAllerts() {
+    public String getAlerts() {
         log.info("GET /alerts/ ALL ");
-        HubInfo h = hubInfoService.getInstanceTO();
         // TODO real data
-        return jsonHandler.toJson(h);
+        return null;
     }
 
 //

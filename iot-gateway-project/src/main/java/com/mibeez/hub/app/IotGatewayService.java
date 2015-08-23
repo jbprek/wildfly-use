@@ -1,76 +1,114 @@
 package com.mibeez.hub.app;
 
-import com.mibeez.hub.model.SensorType;
-import com.mibeez.hub.to.HubInfo;
-import com.mibeez.hub.to.SensorInfo;
+import com.mibeez.hub.model.HubStatus;
+import com.mibeez.hub.model.LanAddress;
+import com.mibeez.hub.model.SensorValue;
+import redis.clients.jedis.Jedis;
 
-import javax.ejb.Local;
+import javax.ejb.Stateless;
 import java.net.InetAddress;
+import java.net.URI;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * @author prekezes.
  */
-@Local
-public interface IotGatewayService {
+@Stateless
+public class IotGatewayService {
 
-    // -------- Incoming messages ---------
+    private static final Logger log = Logger.getGlobal();
 
-    HubInfo getHubInfo();
 
-    void commitHub(String name) throws HubGatewayException;
+    /* Detected in the underlying hardware */
+    private InetAddress wanAddress;
+    /* Detected in the underlying hardware */
+    private String lanAddress;
+    /* Status */
+    private HubStatus status = HubStatus.OFF;
+    /* Status modification time */
+    private Date statusUpdate = new Date();
+    /* Assigned from central system */
+    private String name;
+    /* Factory assigned - globally unique*/
+    private String uniqueId;
+    /* Factory assigned - Central's system base URI */
+    private URI centralSystemURI;
 
-    void disableHub() throws HubGatewayException;
-
-    void setStandby(boolean standby) throws HubGatewayException;
-
-    void onHiveDetected(String lanAddress) throws HubGatewayException;
-
-    void disableHive(String lanAddress) throws HubGatewayException;
-
+    private Jedis jedis = new Jedis("localhost");
 
     /**
-     * Get List of Hive lan addresses
-     */
-    List<String> alHives();
-
-    /*
-     * Get values of sensors on Hive
-     */
-    List<SensorInfo> getHiveSensorValues(String lanAddress) throws HubGatewayException;
-
-
-    /*
-     * Get values of sensors on Hive
-     */
-    List<SensorInfo> allHiveSensorValues(String lanAddress) throws HubGatewayException;
-
-
-    //-------- Outgoing Messages ------------------
-
-    /*
-    	CS	HUB	PUT	/connect/{:unique_factory_id}		Periodically sent from uncommissioned Hubs	None
-	CS	HUB	PUT	/hub/{:name}/new_wan_address		Notification that wan_address has changed for a hub, or that the hub requests to be re-commissioned after a a temporay decommission	None
-	CS	HUB	POST	/hub/{:name}/alerts		Notification for  alarms from Hub to CS	POST SensorInfo[]
-	CS	HUB	POST	/hub/{:name}/warnings		Notification for  warnings from Hub to CS	POST SensorInfo[]
-	CS	HUB	POST	/hub/{:name}/new_cell/{:lan_address}		Notification that a new hive was introduced	POST CellInfo
-
+     * Information about Hub hardware and status
      */
 
 
-    boolean askCommissioning(String uniqueId);
 
-    boolean newWanAddressEvent(InetAddress wanAddress);
+    public Map<LanAddress, List<SensorValue>> getAllSensorValues() throws IotGatewayException {
+        return null;
+    }
 
-    boolean newHiveEvent(String lan_address);
+    /**
+     * Evict all cached sensor values, fetch and cache new ones
+     *
+     * @return
+     */
 
-    boolean alertsEvent(List<SensorInfo> alerts);
+    public Map<LanAddress, List<SensorValue>> refreshAndGetAllSensorValues() throws IotGatewayException {
+        return null;
+    }
+
+    /**
+     * Cell cached sensor values
+     *
+     * @param cell
+     * @return
+     */
+
+    public List<SensorValue> getCellSensorValues(LanAddress cell) throws IotGatewayException {
+        return null;
+    }
+
+    /**
+     * Evict all cached sensor values for a given cell, fetch and cache new ones
+     *
+     * @param cell
+     * @return
+     */
+
+    public List<SensorValue> refreshAndGetCellSensorValues(LanAddress cell) throws IotGatewayException {
+        return null;
+    }
+
+
+    public void onAlertEvent(LanAddress address, SensorValue sensorValue) throws IotGatewayException {
+
+    }
 
 
 
+    public void onHiveDetected(LanAddress lanAddress) throws IotGatewayException {
+
+    }
 
 
+    public void disableHive(LanAddress lanAddress) throws IotGatewayException {
+
+    }
 
 
+    public boolean askCommissioning(String uniqueId) {
+        return false;
+    }
+
+
+    public boolean newWanAddressEvent(InetAddress wanAddress) {
+        return false;
+    }
+
+
+    public boolean newHiveEvent(String lan_address) {
+        return false;
+    }
 }
