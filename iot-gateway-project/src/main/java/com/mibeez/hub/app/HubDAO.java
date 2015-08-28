@@ -1,136 +1,98 @@
 package com.mibeez.hub.app;
 
-import com.mibeez.hub.model.HubParameters;
-import com.mibeez.hub.model.HubStatus;
-import com.mibeez.hub.to.HubParametersTO;
-import redis.clients.jedis.Jedis;
+import com.mibeez.hub.model.HubInfo;
+import com.mibeez.hub.model.LanAddress;
+import com.mibeez.hub.model.SensorType;
+import com.mibeez.hub.model.SensorValue;
+import sun.management.Sensor;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-
-import java.net.URI;
-import java.time.Instant;
+import javax.ejb.Local;
 import java.util.Map;
-import java.util.logging.Logger;
-
-import static com.mibeez.hub.to.HubParametersTO.*;
 
 /**
- * Only one instance of a hub exists, methods here provide atomicity of operation on HubParameters
+ * @author prekezes.
  */
-
-@Singleton
-public class HubDAO {
-    private static final Logger log = Logger.getGlobal();
-
-    private HubParameters parameters;
-    private HubParametersTO parametersTO;
-
-    private Jedis jedis = new Jedis("localhost");
+@Local
+public interface HubDAO {
 
     /**
-     * On Startup if Hub instance doesn't exist this means that the hub is un-commissioned
+     * Called on application startup when hub is not commissioned
+     * @throws IotGatewayException
      */
-    @PostConstruct
-    private void setup() throws IotGatewayException {
-        log.config("@PostConstruct");
-        try {
-            if (!jedis.exists(HUB_PARAMETERS_KEY)) {
-                parameters = new HubParameters("eth0", "1", HubStatus.OFF, Instant.now(), "ABRA-CADABRA", URI.create("http://localhost:8080/cs"), "0");
-                parametersTO = HubParametersTO.valueOf(parameters);
-                redisStore();
-            }
-        } catch (Exception e) {
-            log.severe(e.getMessage());
-            throw new IotGatewayException("@PostConstruct failed", e);
-        }
-    }
+    void hubInit()  throws IotGatewayException;
 
     /*
-     * Only thread safe copy is escaping
+     * Returns hub info
+     * @throws IotGatewayException
      */
-    public HubParametersTO getParametersTO() {
-        return parametersTO;
-    }
+    HubInfo getHubInfo() throws IotGatewayException;
 
     /**
-     * CS commissions providing name
-     *
+     * Commission Hub with name provided from the Central system
      * @param name
      * @throws IotGatewayException
      */
-    public void commitHub(String name) throws IotGatewayException {
-        try {
-            log.config("commitHub Entry");
-            parameters.setName(name);
-            parameters.setStatus(HubStatus.ON);
-            parameters.setStatusUpdate(Instant.now());
-            parametersTO = HubParametersTO.valueOf(parameters);
-            log.config("commitHub Exit");
-            redisStore();
-        } catch (Exception e) {
-            log.severe(e.getMessage());
-            throw new IotGatewayException("commitHub", e);
-        }
-
-    }
+    void hubCommission(String name) throws IotGatewayException;
 
     /**
-     * CS commands Hub decommission
-     */
-    public void disableHub() throws IotGatewayException {
-        try {
-            log.config("disableHub Entry");
-            parameters.setName(null);
-            parameters.setStatus(HubStatus.OFF);
-            parameters.setStatusUpdate(Instant.now());
-            parametersTO = HubParametersTO.valueOf(parameters);
-            log.config("disableHub Exit");
-            redisStore();
-        } catch (Exception e) {
-            log.severe(e.getMessage());
-            throw new IotGatewayException("disableHub", e);
-        }
-
-    }
-
-    /**
-     * Sets or disables standby mode
-     *
+     * Toggle Hub to standby or to ON mode
      * @param standby
      * @throws IotGatewayException
      */
-    public void setStandby(boolean standby) throws IotGatewayException {
-        try {
-            log.config("setStandby Entry");
-            parameters.setName(null);
-            parameters.setStatus(HubStatus.OFF);
-            parameters.setStatusUpdate(Instant.now());
-            parametersTO = HubParametersTO.valueOf(parameters);
-            log.config("setStandby Exit");
-            redisStore();
-        } catch (Exception e) {
-            log.severe(e.getMessage());
-            throw new IotGatewayException("setStandby", e);
-        }
-    }
+    void hubToggleStandBy(boolean standby) throws IotGatewayException;
 
     /**
-     * Fetches from REDIS hub parameters
+     * Get all sensor values
+     * @return
+     * @throws IotGatewayException
      */
-    private void redisFetch() {
-        Map<String,String>  val = jedis.hgetAll(HUB_PARAMETERS_KEY);
-        parametersTO = HubParametersTO.valueOf(val);
-        parameters = parametersTO.toHubParameters();
-    }
+    Map<LanAddress, Map<SensorType, SensorValue>> getSensorValues() throws IotGatewayException;
 
-    /*
-     * Stores to REDIS hub parameters
+    /**
+     * Get all stored sensor values for a specific LAN address
+     * @param lanAddress
+     * @return
+     * @throws IotGatewayException
      */
-    private void redisStore() {
-       Map<String, String> val = parametersTO.toMap();
-        jedis.hmset(HUB_PARAMETERS_KEY, val);
-    }
+    Map<SensorType, SensorValue>  getSensorValues(LanAddress lanAddress) throws IotGatewayException;
+
+    /**
+     * Get  stored sensor value for a specific LAN address
+     * @param lanAddress
+     * @return
+     * @throws IotGatewayException
+     */
+    Map<SensorType, SensorValue>  getSensorValues(LanAddress lanAddress, SensorType sensorType) throws IotGatewayException;
+
+    /**
+     * Refresh all sensor values
+     * @throws IotGatewayException
+     */
+    void refreshSensorValues() throws IotGatewayException;
+
+    /**
+     * Refresh all stored sensor values for a specific LAN address
+     * @param lanAddress
+     * @return
+     * @throws IotGatewayException
+     */
+    void refreshSensorValues(LanAddress lanAddress) throws IotGatewayException;
+
+    /**
+     * get Alert conditions
+     * @return
+     * @throws IotGatewayException
+     */
+    Map<LanAddress, Map<SensorType, SensorValue>> getAlerts() throws IotGatewayException;
+
+    /**
+     * Notification for new values triggered by Sensor incoming command
+     * @param address
+     * @param values
+     * @throws IotGatewayException
+     */
+    void onValuesEvent(LanAddress address, Map<SensorType, SensorValue> values) throws IotGatewayException;
+
 
 
 }

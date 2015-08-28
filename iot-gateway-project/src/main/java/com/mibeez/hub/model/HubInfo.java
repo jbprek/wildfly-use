@@ -6,7 +6,7 @@ import java.time.Instant;
 /**
  * Hub Operating Parameters.
  */
-public class HubParameters {
+public class HubInfo {
     /* Detected in the underlying hardware */
     private String wanInterface;
     /* Detected in the underlying hardware */
@@ -24,7 +24,7 @@ public class HubParameters {
     /* Assigned from central system */
     private String name;
 
-    public HubParameters(String wanInterface, String lanAddress, HubStatus status, Instant statusUpdate, String uniqueId, URI centralSystemURI, String version) {
+    public HubInfo(String wanInterface, String lanAddress, HubStatus status, Instant statusUpdate, String uniqueId, URI centralSystemURI, String version) {
         this.wanInterface = wanInterface;
         this.lanAddress = lanAddress;
         this.status = status;

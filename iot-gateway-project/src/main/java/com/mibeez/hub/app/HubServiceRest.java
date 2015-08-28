@@ -16,8 +16,7 @@
  */
 package com.mibeez.hub.app;
 
-import com.google.gson.reflect.TypeToken;
-import com.mibeez.gson.JsonHandler;
+
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -31,7 +30,7 @@ import java.util.logging.Logger;
 
 /**
  * Implementation of Hub Application REST api
- * 	HUB	CS	GET	/	hubInfo	Status of the Hub, verify connectivity	returns HubInfo
+ *
  * HUB	CS	POST	/	commission	BeehiveHub commission, name assignement to the hub	Input name of the hub, returns HubInfo {'name'='<NAMEVALUE>'}
  * HUB	CS	PUT	/	toggleStandby	BeehiveHub temporary de-commission	{'standby'=[true|false]}
  * HUB	CS	DELETE	/	decommission	BeehiveHub permanent de-commission	None
@@ -46,26 +45,24 @@ public class HubServiceRest {
 
     private static Logger log = Logger.getGlobal();
 
-    private JsonHandler jsonHandler;
 
     @EJB
     private IotGatewayService service;
 
     @PostConstruct
     private void setup() {
-        jsonHandler = new JsonHandler();
+
     }
 
     /**
-     * Retrieves a JSON hello world message.
-     * The {@link Path} method annotation value is related to the one defined at the class level.
-     *
-     * @return
+     * <p>URL: GET /</p>
+     * @return   HubInfo as JSON string
      */
     @GET
     @Path("/")
     @Produces({"application/json"})
     public String getHubInfo() {
+        log.config("GET / -> getHubInfo()");
 //
 //        try {
 //            HubInfo h = service.getHub().toHubInfo();
@@ -79,7 +76,7 @@ public class HubServiceRest {
     }
 
     /**
-     * We expect a JSON object of the form { 'name' : 'nameValue'}
+     * <p>URL: POST /</p>
      * @param jsonInfo
      * @return
      */
@@ -87,32 +84,25 @@ public class HubServiceRest {
     @Path("/")
     @Consumes({"application/json"})
     public Response commission(String jsonInfo) {
-        // Retrieve port Information
-        // TODO invalid format
-        Type type = new TypeToken<Map<String, String>>(){}.getType();
-        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
-
-        try {
-            service.commitHub(myMap.get("name"));
-        } catch (IotGatewayException e) {
-            // TODO handle error
-            e.printStackTrace();
-        }
+        log.config("POST / -> commission()");
+//
+//        // Retrieve port Information
+//        // TODO invalid format
+//        Type type = new TypeToken<Map<String, String>>(){}.getType();
+//        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
+//
+//        try {
+//            service.commitHub(myMap.get("name"));
+//        } catch (IotGatewayException e) {
+//            // TODO handle error
+//            e.printStackTrace();
+//        }
 
         return Response.created(URI.create("/")).build();
     }
 
-       /*
-       	HUB	CS	PUT	/	BeehiveHub temporary de-commission	{'commission=true|false}
-	    HUB	CS	DELETE	/	BeehiveHub permanent de-commission	None
-        HUB	CS	DELETE	/sensors/{:lan_address}	Hive Decommission	None
-        HUB	CS	GET	/sensors[/{:lan_address}]	Cached sensor values	returns SensorInfo[]
-        HUB	CS	PUT	/sensors[/{:lan_address}]	Last sensor values,  forces re-read of sensor values	returns SensorInfo[]
-        HUB	CS	GET	/alarms	Current alarm conditions	returns SensorInfo[]
-
-        */
     /**
-     *
+     * <p>URL: PUT /</p>
      * @param jsonInfo
      * @return
      */
@@ -120,6 +110,8 @@ public class HubServiceRest {
     @Path("/")
     @Consumes({"application/json"})
     public Response toggleStandby(String jsonInfo) {
+        log.config("PUT / -> toggleStandby()");
+
 //        Type type = new TypeToken<Map<String, String>>(){}.getType();
 //        Map<String, String> myMap = jsonHandler.fromJson(jsonInfo, type);
 //
@@ -133,10 +125,17 @@ public class HubServiceRest {
         return Response.ok(URI.create("/")).build();
     }
 
+    /**
+     * <p>URL: DELETE /</p>
+     * @param jsonInfo
+     * @return
+     */
     @DELETE
     @Path("/")
     public Response decommission(String jsonInfo) {
-         // TODO Implement
+        log.config("DELETE / -> decommission()");
+
+        // TODO Implement
 //        HubInfo h = hubInfoService.getInstanceTO();
 //        // TODO Error if name allready exists
 //        // TODO Error if name not found in jsonInfo
@@ -147,52 +146,63 @@ public class HubServiceRest {
         return Response.ok(URI.create("/")).build();
     }
 
-
+    /**
+     * <p>URL: GET /ping</p>
+     * @return
+     */
     @GET
     @Path("/ping")
     @Produces({"text/plain"})
     public Response ping() {
+        log.config("GET /ping -> ping()");
+
         return Response.ok(URI.create("/")).build();
     }
 
-    /*
-    * HUB	CS	DELETE	/sensors/{:lan_address}	hiveCommission	Hive Decommission	None
- * HUB	CS	GET	/sensors[/{:lan_address}]	hiveSensorValues	Cached sensor values	returns SensorInfo[]
- * HUB	CS	PUT	/sensors[/{:lan_address}]	hiveUpdateSensorValues	Last sensor values,  forces re-read of sensor values	returns SensorInfo[]
- * HUB	CS	GET	/alerts	readAlertList	Current alarm conditions	returns SensorInfo[]
-     */
-
     /**
-     *   GET	/sensors[/{:lan_address}]	hiveSensorValues	Cached sensor values	returns SensorInfo[]
+     * <p>URL: GET /sensors</p>
+     * @return
      */
-
     @GET
     @Path("/sensors")
     @Produces({"application/json"})
     public String allHiveSensorValues() {
-        log.info("GET /sensors/ ALL ");
+        log.config("GET /sensors -> ping()");
         // TODO real data
         return null;
     }
 
+
+    /**
+     * <p>URL: GET /{lan_address}</p>
+     * @return
+     */
     @GET
     @Path("/sensors/{lan_address}")
     @Produces({"application/json"})
     public String hiveSensorValues(@PathParam("lan_address")String lanAddress) {
-        log.info("GET /sensors/ + "+lanAddress);
+        log.config("GET /sensors/{lan_address}=" + lanAddress);
         // TODO real data
         return null;
     }
 
+    /**
+     * <p>URL: PUT /sensors</p>
+     * @return
+     */
     @PUT
     @Path("/sensors")
     @Produces({"application/json"})
     public Response refreshAllHiveSensorValues() {
-        log.info("GET /sensors/ ALL ");
+        log.config("PUT /sensors -> refreshAllHiveSensorValues()");
         // TODO real data
         return Response.ok(URI.create("/")).build();
     }
 
+    /**
+     * <p>URL: DELETE /sensors/{lan_address} </p>
+     * @return
+     */
     @DELETE
     @Path("/sensors/{lan_address}")
     @Produces({"application/json"})
@@ -202,6 +212,10 @@ public class HubServiceRest {
         return null;
     }
 
+    /**
+     * <p>URL: PUT /sensors/{lan_address} </p>
+     * @return
+     */
     @PUT
     @Path("/sensors/{lan_address}")
     @Produces({"application/json"})
@@ -211,6 +225,10 @@ public class HubServiceRest {
         return null;
     }
 
+    /**
+     * <p>URL: GET /alerts</p>
+     * @return
+     */
     @GET
     @Path("/alerts")
     @Produces({"application/json"})
@@ -219,19 +237,5 @@ public class HubServiceRest {
         // TODO real data
         return null;
     }
-
-//
-//    /**
-//     * Retrieves a XML hello world message.
-//     * The {@link Path} method annotation value is related to the one defined at the class level.
-//     *
-//     * @return
-//     */
-//    @GET
-//    @Path("xml")
-//    @Produces({"application/xml"})
-//    public String getHelloWorldXML() {
-//        return "<xml><result>" + helloService.createHelloMessage("World") + "</result></xml>";
-//    }
 
 }

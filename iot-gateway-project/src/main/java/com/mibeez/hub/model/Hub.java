@@ -10,16 +10,15 @@ import java.util.Map;
 public class Hub implements Serializable{
 
     /* Operating parameters */
-    private HubParameters parameters;
+    private HubInfo parameters;
     /* Sensors controlled the hub */
     private Map<LanAddress, Map<SensorType, SensorValue>> sensorUnits = new HashMap<>();
 
-
-    public HubParameters getParameters() {
+    public HubInfo getParameters() {
         return parameters;
     }
 
-    public void setParameters(HubParameters parameters) {
+    public void setParameters(HubInfo parameters) {
         this.parameters = parameters;
     }
 
