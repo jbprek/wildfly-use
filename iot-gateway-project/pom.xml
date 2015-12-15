@@ -133,7 +133,7 @@
     </dependencies>
 
     <build>
-        <!-- Set the name of the war, used as the context root when the app
+        <!-- Set the name of the war, used as the context root when the ex
             is deployed -->
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -167,7 +167,7 @@
     <profiles>
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-            <!-- Use this profile for any OpenShift specific customization your app will need. -->
+            <!-- Use this profile for any OpenShift specific customization your ex will need. -->
             <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>

@@ -53,7 +53,7 @@
                         have any modules (EJB-JARs and WARs) use them -->
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <modules>
-                    <!-- Default context root of the web app is /wildfly-ejb-in-ear-web.
+                    <!-- Default context root of the web ex is /wildfly-ejb-in-ear-web.
                         If a custom context root is needed, uncomment the following snippet to
                         register our War as a web module and set the contextRoot property -->
                         <webModule>

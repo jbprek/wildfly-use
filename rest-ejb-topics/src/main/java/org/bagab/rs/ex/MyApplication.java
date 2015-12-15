@@ -1,11 +1,7 @@
-package org.bagab.rs.app;
-
-import org.bagab.rs.hello.HelloText;
+package org.bagab.rs.ex;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by john on 6/14/15.

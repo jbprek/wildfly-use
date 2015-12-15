@@ -13,6 +13,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Jackson Version -->
+        <jackson.version>2.6.1</jackson.version>
 
         <!-- JBoss dependency versions for  WildFly 8.2-->
         <version.jboss.bom>8.2.0.Final</version.jboss.bom>
@@ -65,6 +67,28 @@
 
 
     <dependencies>
+
+        <!-- Jackson JSOn depedencies -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
         <!-- Import the CDI API, we use provided scope as the API is included in
             JBoss WildFly -->
         <dependency>
@@ -157,7 +181,7 @@
     </dependencies>
 
     <build>
-        <!-- Set the name of the war, used as the context root when the app is
+        <!-- Set the name of the war, used as the context root when the ex is
             deployed -->
         <finalName>${project.artifactId}</finalName>
         <plugins>

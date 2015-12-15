@@ -114,7 +114,7 @@ public class RemoteEJBClient {
         //
         // <appName> The application name is the name of the EAR that the EJB is deployed in
         // (without the .ear). If the EJB JAR is not deployed in an EAR then this is
-        // blank. The app name can also be specified in the EAR's application.xml
+        // blank. The ex name can also be specified in the EAR's application.xml
         //
         // <moduleName> By the default the module name is the name of the EJB JAR file (without the
         // .jar suffix). The module name might be overridden in the ejb-jar.xml
@@ -148,7 +148,7 @@ public class RemoteEJBClient {
         //
         // <appName> The application name is the name of the EAR that the EJB is deployed in
         // (without the .ear). If the EJB JAR is not deployed in an EAR then this is
-        // blank. The app name can also be specified in the EAR's application.xml
+        // blank. The ex name can also be specified in the EAR's application.xml
         //
         // <moduleName> By the default the module name is the name of the EJB JAR file (without the
         // .jar suffix). The module name might be overridden in the ejb-jar.xml

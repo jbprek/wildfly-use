@@ -21,7 +21,7 @@
         <module>template-ejb-module</module>
         <!-- Template for a standalone ejb module  -->
         <module>template-ejb-module-simple</module>
-        <!-- war app depending on a non deployed ejb module -->
+        <!-- war ex depending on a non deployed ejb module -->
         <module>template-warapp-depson-ejb-inline</module>
         <!--
         <module>template-ejb-remote-client</module>-->
