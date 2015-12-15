@@ -31,8 +31,9 @@
 			Alternatively, the configuration below can be uncommented. -->
 		<configuration>
 			<property name="jbossHome">/java-tools/jboss-as/wildfly-8.2.0.Final</property>
-			<!-- <property name="javaHome">/Program Files/Java/jdk1.8.0_20</property>
-				<property name="jbossHome">/java-tools/jboss-as/wildfly-8.1.0.Final</property> -->
+			<!--<property name="jbossHome">C:/java-tools/jboss-as/wildfly-9.0.1.Final</property>-->
+
+			<!-- <property name="javaHome">/Program Files/Java/jdk1.8.0_20</property> -->
 		</configuration>
 	</container>
 

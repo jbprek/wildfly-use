@@ -42,6 +42,7 @@
         <module>jms-topics</module>
         <module>rest-ejb-topics</module>
         <module>iot-gateway-project</module>
+        <module>picketlink-idm-jpa</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->
