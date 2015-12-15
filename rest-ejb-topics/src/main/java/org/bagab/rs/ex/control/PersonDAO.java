@@ -42,13 +42,16 @@ public class PersonDAO {
     }
 
     /** Update */
-    public Person updatePerson(Long id, String name)    {
-        Objects.requireNonNull(id);
-        Person p =  storage.get(id);
-        if (p == null)
-            throw new MyApplicationException("Not found id " + id + "!");
+    public Person updatePerson(Person newP)    {
+        Objects.requireNonNull(newP);
+        Objects.requireNonNull(newP.getId());
 
-        return p;
+        Person old =  storage.get(newP.getId());
+        if (old == null)
+            throw new MyApplicationException("Not found id " + newP.getId() + "!");
+
+        storage.replace(old.getId(), old, newP);
+        return newP;
     }
 
 
@@ -62,10 +65,10 @@ public class PersonDAO {
     }
 
     /** Report all */
-    public List<String>  displayAll() {
-        List<String>  r = new ArrayList<>();
+    public List<Person>  displayAll() {
+        List<Person>  r = new ArrayList<>();
         for (Person p : storage.values()) {
-            r.add(p.toString());
+            r.add(p);
         }
         return r;
     }

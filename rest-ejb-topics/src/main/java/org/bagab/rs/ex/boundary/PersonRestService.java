@@ -30,8 +30,8 @@ public class PersonRestService {
     @GET
     @Path("/list")
     @Produces(value = MediaType.APPLICATION_JSON)
-    public List<String> list() {
-        List<String> list = dao.displayAll();
+    public List<Person> list() {
+        List<Person> list = dao.displayAll();
         return list;
     }
 
