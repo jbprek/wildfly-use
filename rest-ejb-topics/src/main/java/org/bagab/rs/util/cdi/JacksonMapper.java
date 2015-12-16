@@ -1,4 +1,4 @@
-package org.bagab.rs.ex.util.cdi;
+package org.bagab.rs.util.cdi;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.ElementType;

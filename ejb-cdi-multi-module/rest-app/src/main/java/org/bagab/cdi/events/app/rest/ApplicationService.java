@@ -72,7 +72,7 @@ public class ApplicationService {
     public String response;
 
     @GET
-    @Path("/request")
+    @Path("/request/{input}")
     public void request(@PathParam("input") String input){
         abean.doWork(input);
     }

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.bagab.rs.ex.util.jaxrs;
+package org.bagab.rs.util.jaxrs;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

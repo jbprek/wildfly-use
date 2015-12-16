@@ -1,4 +1,4 @@
-package org.bagab.rs.ex.util.jaxrs;
+package org.bagab.rs.util.jaxrs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;

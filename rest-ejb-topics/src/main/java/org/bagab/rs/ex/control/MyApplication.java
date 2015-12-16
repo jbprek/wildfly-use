@@ -1,4 +1,4 @@
-package org.bagab.rs.ex;
+package org.bagab.rs.ex.control;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

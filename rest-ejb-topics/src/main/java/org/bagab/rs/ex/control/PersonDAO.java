@@ -1,20 +1,27 @@
 package org.bagab.rs.ex.control;
 
 import org.bagab.rs.ex.model.MyApplicationException;
+import org.bagab.rs.ex.model.MyNotFoundException;
 import org.bagab.rs.ex.model.Person;
 
 import javax.ejb.Singleton;
+import javax.inject.Inject;
 import java.util.*;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Logger;
 
 /**
  * @author prekezes.
  */
 @Singleton
 public class PersonDAO {
+
+    @Inject
+    private Logger log;
+
     private AtomicLong idSequence = new AtomicLong(0);
 
     // Storage
@@ -38,7 +45,10 @@ public class PersonDAO {
     /** Read */
     public Person findPerson(Long id)    {
         Objects.requireNonNull(id);
-        return storage.get(id);
+        Person p =  storage.get(id);
+        if (p == null)
+            throw new MyNotFoundException("Not found id " + id + "!");
+        return p;
     }
 
     /** Update */
@@ -48,20 +58,21 @@ public class PersonDAO {
 
         Person old =  storage.get(newP.getId());
         if (old == null)
-            throw new MyApplicationException("Not found id " + newP.getId() + "!");
+            throw new MyNotFoundException("Not found id " + newP.getId() + "!");
 
         storage.replace(old.getId(), old, newP);
         return newP;
     }
-
 
     /** Delete */
     public Person deletePerson(Long id)    {
         Objects.requireNonNull(id);
         Person p =  storage.get(id);
         if (p == null)
-            throw new MyApplicationException("Cannot delete. Not found id " + id + "!");
-        return storage.get(id);
+            throw new MyNotFoundException("Cannot delete. Not found id " + id + "!");
+
+        storage.remove(id);
+        return p;
     }
 
     /** Report all */

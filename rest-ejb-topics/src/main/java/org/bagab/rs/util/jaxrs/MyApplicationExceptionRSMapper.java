@@ -1,4 +1,4 @@
-package org.bagab.rs.ex.util.jaxrs;
+package org.bagab.rs.util.jaxrs;
 
 
 import org.bagab.rs.ex.model.MyApplicationException;

@@ -1,4 +1,4 @@
-package org.bagab.rs.ex.util.cdi;
+package org.bagab.rs.util.cdi;
 
 
 import javax.enterprise.inject.Produces;

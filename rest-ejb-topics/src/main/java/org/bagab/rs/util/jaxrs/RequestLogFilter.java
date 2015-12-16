@@ -1,4 +1,4 @@
-package org.bagab.rs.ex.util.jaxrs;
+package org.bagab.rs.util.jaxrs;
 
 import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
