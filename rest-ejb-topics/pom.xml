@@ -12,58 +12,94 @@
     <packaging>war</packaging>
 
     <properties>
+        <!-- Explicitly declaring the source encoding eliminates the following message: -->
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered
+             resources, i.e. build is platform dependent! -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Jackson Version -->
-        <jackson.version>2.6.1</jackson.version>
 
-        <!-- JBoss dependency versions for  WildFly 8.2-->
-        <version.jboss.bom>8.2.0.Final</version.jboss.bom>
+        <!-- JBoss dependency versions -->
         <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
-        <version.jboss.spec.javaee.7.0>1.0.0.Final</version.jboss.spec.javaee.7.0>
-
-        <!-- Arquillian for  WildFly 8.2-->
-        <version.arquillian.container>8.2.0.Final</version.arquillian.container>
+        <!-- Define the version of the JBoss BOMs we want to import to specify tested stacks. -->
+        <version.jboss.bom>9.0.0.Final</version.jboss.bom>
+        <!-- PicketLink dependency versions -->
+        <version.picketlink.javaee.bom>2.7.0.Final</version.picketlink.javaee.bom>
         <!-- other plugin versions -->
         <version.compiler.plugin>3.1</version.compiler.plugin>
-        <version.surefire.plugin>2.10</version.surefire.plugin>
-        <version.ear.plugin>2.6</version.ear.plugin>
+        <version.surefire.plugin>2.17</version.surefire.plugin>
+        <version.war.plugin>2.5</version.war.plugin>
         <version.ejb.plugin>2.3</version.ejb.plugin>
-        <version.war.plugin>2.1.1</version.war.plugin>
+
+        <version.ear.plugin>2.6</version.ear.plugin>
+
         <!-- maven-compiler-plugin -->
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
+
+        <!-- Jackson Version -->
+        <jackson.version>2.6.1</jackson.version>
+
+        <!-- REDIS Jedis client version -->
+        <jedis.version>2.7.2</jedis.version>
+
+        <!-- Keycloak version -->
+        <version.keycloak>1.6.1.Final</version.keycloak>
+
+
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!--<dependency>-->
-            <!--<groupId>org.jboss.spec</groupId>-->
-            <!--<artifactId>jboss-javaee-7.0</artifactId>-->
-            <!--<version>${version.jboss.spec.javaee.7.0}</version>-->
-            <!--<type>pom</type>-->
-            <!--<scope>import</scope>-->
-            <!--</dependency>-->
+            <!-- JBoss distributes a complete set of Java EE 7 APIs including
+                a Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or
+                a collection) of artifacts. We use this here so that we always get the correct
+                versions of artifacts. Here we use the jboss-javaee-7.0-with-tools stack
+                (you can read this as the JBoss stack of the Java EE 7 APIs, with some extras
+                tools for your project, such as Arquillian for testing) and the jboss-javaee-7.0-with-hibernate
+                stack you can read this as the JBoss stack of the Java EE 7 APIs, with extras
+                from the Hibernate family of projects) -->
             <dependency>
                 <groupId>org.wildfly.bom</groupId>
-                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                <artifactId>jboss-javaee-7.0-wildfly-with-tools</artifactId>
                 <version>${version.jboss.bom}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- Dependency Management for PicketLink and Java EE 6.0. -->
             <dependency>
-                <groupId>org.wildfly.bom</groupId>
-                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
-                <version>${version.jboss.bom}</version>
+                <groupId>org.picketlink</groupId>
+                <artifactId>picketlink-javaee-6.0</artifactId>
+                <version>${version.picketlink.javaee.bom}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.1.9.Final</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>2.2.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
             <dependency>
-                <groupId>org.eu.ingwar.tools</groupId>
-                <artifactId>arquillian-suite-extension</artifactId>
-                <version>1.1.1</version>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-transaction-bom</artifactId>
+                <version>1.0.1.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
+
 
 
     <dependencies>
@@ -132,24 +168,41 @@
         </dependency>
 
         <!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss WildFly -->
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.resteasy</groupId>-->
+            <!--<artifactId>jaxrs-api</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.jboss.resteasy</groupId>-->
+			<!--<artifactId>resteasy-client</artifactId>-->
+            <!--<scope>provided</scope>-->
+		<!--</dependency>-->
+
+        <!-- RESTEasy implementation of JAX-RS API -->
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.resteasy</groupId>-->
+            <!--<artifactId>resteasy-jaxrs</artifactId>-->
+        <!--</dependency>-->
+        <!--&lt;!&ndash; RESTEasy implementation of JAX-RS Client API &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.jboss.resteasy</groupId>-->
+            <!--<artifactId>resteasy-client</artifactId>-->
+        <!--</dependency>-->
+
+        <!-- Import the JAX-RS API, we use provided scope as the API is included
+                  in JBoss WildFly -->
         <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>jaxrs-api</artifactId>
+            <groupId>org.jboss.spec.javax.ws.rs</groupId>
+            <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
             <scope>provided</scope>
         </dependency>
-
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-client</artifactId>
-			<version>3.0.14.Final</version>
-		</dependency>
-
-
-        <!--<dependency>-->
-        <!--<groupId>junit</groupId>-->
-        <!--<artifactId>junit</artifactId>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
+        <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
@@ -164,6 +217,8 @@
         <dependency>
             <groupId>org.eu.ingwar.tools</groupId>
             <artifactId>arquillian-suite-extension</artifactId>
+            <version>1.1.1</version>
+
             <scope>test</scope>
         </dependency>
 
