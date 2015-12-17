@@ -3,3 +3,7 @@
 *.iml
 #Exclude maven target directories
 *target
+#* Eclipse related
+*.settings
+*.project
+*.classpath
