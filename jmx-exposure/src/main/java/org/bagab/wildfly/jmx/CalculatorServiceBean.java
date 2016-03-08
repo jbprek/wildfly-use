@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
@@ -13,8 +14,7 @@ import javax.ejb.Startup;
 @Singleton
 @Startup
 public class CalculatorServiceBean extends AbstractComponentMBean implements ICalculatorServiceMBean {
-    public static Logger log  = LoggerFactory.getLogger(CalculatorServiceBean.class);
-
+    public static Logger log = LoggerFactory.getLogger(CalculatorServiceBean.class);
 
 
     public CalculatorServiceBean() {
@@ -22,8 +22,14 @@ public class CalculatorServiceBean extends AbstractComponentMBean implements ICa
     }
 
     @PostConstruct
-    public void setup(){
+    public void setup() {
         log.info("Service started!");
+    }
+
+
+    @PreDestroy
+    public void tearDown() {
+        log.info("Service stopped!");
     }
 
     @Override

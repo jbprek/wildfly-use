@@ -45,6 +45,7 @@ public abstract class AbstractComponentMBean {
 
     @PostConstruct
     protected void startup() {
+        log.info("AbstractComponentMBean startup");
         this.name = this.getClass().getSimpleName();
         try {
             objectName = new ObjectName(domain, "type", name);
