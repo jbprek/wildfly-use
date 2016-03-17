@@ -32,32 +32,34 @@
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
 
-    <!--<dependencyManagement>-->
-        <!--<dependencies>-->
-            <!--&lt;!&ndash;<dependency>&ndash;&gt;-->
-            <!--&lt;!&ndash;<groupId>org.jboss.spec</groupId>&ndash;&gt;-->
-            <!--&lt;!&ndash;<artifactId>jboss-javaee-7.0</artifactId>&ndash;&gt;-->
-            <!--&lt;!&ndash;<version>${version.jboss.spec.javaee.7.0}</version>&ndash;&gt;-->
-            <!--&lt;!&ndash;<type>pom</type>&ndash;&gt;-->
-            <!--&lt;!&ndash;<scope>import</scope>&ndash;&gt;-->
-            <!--&lt;!&ndash;</dependency>&ndash;&gt;-->
+    <dependencyManagement>
+        <dependencies>
             <!--<dependency>-->
-                <!--<groupId>org.wildfly.bom</groupId>-->
-                <!--<artifactId>jboss-javaee-7.0-with-all</artifactId>-->
-                <!--<version>${version.jboss.bom}</version>-->
-                <!--<type>pom</type>-->
-                <!--<scope>import</scope>-->
+            <!--<groupId>org.jboss.spec</groupId>-->
+            <!--<artifactId>jboss-javaee-7.0</artifactId>-->
+            <!--<version>${version.jboss.spec.javaee.7.0}</version>-->
+            <!--<type>pom</type>-->
+            <!--<scope>import</scope>-->
             <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.eu.ingwar.tools</groupId>-->
-                <!--<artifactId>arquillian-suite-extension</artifactId>-->
-                <!--<version>1.1.1</version>-->
-            <!--</dependency>-->
-        <!--</dependencies>-->
-    <!--</dependencyManagement>-->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-all</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eu.ingwar.tools</groupId>
+                <artifactId>arquillian-suite-extension</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <dependencies>
+
+
         <dependency>
             <groupId>org.bagab.wildfly</groupId>
             <artifactId>template-ejb-module-interfaces</artifactId>

@@ -36,7 +36,6 @@
 
         <module>cdi-interceptor</module>
         <module>template-war-test-container</module>
-        <module>wildfly-logging</module>
         <!-- Various EJB topics JNDI -->
         <module>wildfly-ejb-general-warapp</module>
         <module>jms-topics</module>
@@ -44,6 +43,8 @@
         <module>picketlink-idm-jpa</module>
         <module>wildfly-logging-alternatives</module>
         <module>jmx-exposure</module>
+
+        <module>spring-greeter</module>
     </modules>
 
     <!-- This is redundant subprojects contain copy -->

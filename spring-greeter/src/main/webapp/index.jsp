@@ -1,4 +1,6 @@
-<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<%--
     JBoss, Home of Professional Open Source
     Copyright 2013, Red Hat, Inc. and/or its affiliates, and individual
     contributors by the @authors tag. See the copyright.txt in the
@@ -13,11 +15,11 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
--->
-<!-- Plain HTML page that kicks us into the ex -->
-
+--%>
 <html>
 <head>
-<meta http-equiv="Refresh" content="0; URL=greeter.jsf">
+<meta HTTP-EQUIV="REFRESH" content="0; url=app/greet">
 </head>
+<body>
+</body>
 </html>

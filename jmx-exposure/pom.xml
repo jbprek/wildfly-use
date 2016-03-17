@@ -11,7 +11,6 @@
     <name>${project.artifactId}</name>
     <packaging>war</packaging>
 
-    <!-- This is redundant subprojects contain copy -->
     <properties>
         <!-- Standard Maven plugin versions -->
         <version.compiler.plugin>3.5.1</version.compiler.plugin>
@@ -19,6 +18,7 @@
         <version.ear.plugin>2.6</version.ear.plugin>
         <version.ejb.plugin>2.3</version.ejb.plugin>
         <version.war.plugin>2.1.1</version.war.plugin>
+
         <!-- Maven-compiler-plugin -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
